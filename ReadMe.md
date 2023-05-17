@@ -1,13 +1,21 @@
-===========
-
 evtx2db
 ----------
 This is a python script that parses Windows .evtx files and saves the records to a SQLite database. Where possible, the description of the Event ID is added, which can help understand what's happening. There is also an option of extracting and reconstructing the 'ScriptBlockText' associated with PowerShell event ID 4104.
 
 Requirements
 ------------
-The script uses the subprocess command to parse evtx files with 'dumpevtx', written in Go. Before anything, you must install dumpevtx and verify that it's in your path. Otherwise, it will fail. Secondly, the json.xz files in the utils directory need to be uncompressed, it can be done with the command:
- `unxz utils/*.xz ` . Finally, make sure you give execution permissions to dump_evtx.sh:  `chmod +x utils/dump_evtx.sh ` . Normally, it should work fine. 
+The script uses the subprocess command to parse evtx files with '[dumpevtx](https://github.com/Velocidex/evtx)', written in Go. Before anything, you must install dumpevtx and verify that it's in your path. Otherwise, it will fail.
+
+
+    git clone https://github.com/Velocidex/evtx
+    cd evtx
+    make
+    chmod +x dumpevtx
+    sudo cp dumpevtx /usr/local/bin/
+    
+ 
+The json.xz files in the utils directory need to be uncompressed, it can be done with the command:
+ `unxz utils/*.xz ` . Finally, make sure you give execution permissions to dump_evtx.sh:  `chmod +x utils/dump_evtx.sh ` 
 
 
 Usage
